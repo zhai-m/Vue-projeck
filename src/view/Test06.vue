@@ -3,26 +3,28 @@
     <!--添加头部信息-->
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">品牌管理</h3>
+        <h3 class="panel-title" v-fontWeight="100">品牌管理</h3>
       </div>
       <div class="panel-body form-control">
         panel-form-control
       </div>
     </div>
 
-    <!--渲染页面-->
+    <!--查询条件-->
     <div>
-      <label>id:
-        <input type="text" v-model="id">
+      <label>
+        id:<input type="text" v-model="id">
       </label>
-      <label>name:
-        <input type="text" v-model="name">
+      <label>
+        name:<input type="text" v-model="name" @keyup.enter="add">
       </label>
       <input type="button" value="添加" @click="add" class="btn btn-primary">
-      <label>搜索关键字:
-        <input type="text" class="form-control" v-model="keywords">
+      <label>
+        搜索关键字:<input type="text" class="form-control" v-model="keywords" v-focus v-color="'blue'">
       </label>
     </div>
+
+    <!--渲染页面-->
     <div>
       <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -37,7 +39,7 @@
         <tr v-for="item in  search(keywords)" :key="item.id">
           <td>{{item.id }}</td>
           <td>{{item.name }}</td>
-          <td>{{item.cTime }}</td>
+          <td>{{item.cTime | msgDateFormat('yyyy-mm-dd hh-mi-sss') }}</td>
           <td><a href="" @click.prevent="del(item.id)">删除</a></td>
         </tr>
         </tbody>
@@ -46,6 +48,30 @@
   </div>
 </template>
 <script>
+    import Vue from 'vue'
+    //定义全局指令 v-focus
+    Vue.directive("focus", {
+        bind: function (el) {
+
+        },
+        inserted: function (el) {
+            el.focus()
+        },
+        update: function (el) {
+
+        }
+    })
+    //定义一个全局样式 color样式的指令
+    Vue.directive("color", {
+        bind: function (el, binding) {
+            el.style.color = binding.value
+        }
+    })
+    // Vue.directive("color",{
+    //     bind:function (el) {
+    //       el.style.color='red'
+    //     }
+    // })
     export default {
         name: "Test06",
         data() {
@@ -108,6 +134,38 @@
                 //        }
                 //    })
             }
+        },
+        filters: { //听过局部过滤器来实现
+            msgDateFormat: function (msg, pattern = '') {
+                //将字符串转换成date类型
+                var mt = new Date(msg)
+                //获取年
+                var y = mt.getFullYear()
+                //获取月f 从0开始 所以要+1
+                var m = mt.getMonth() + 1
+                //获取天
+                var d = mt.getDate()
+                //拼接需要的格式
+                if (pattern === 'yyyy-mm-dd') {
+                    return y + "-" + m + "-" + d
+                }
+                /*获取时*/
+                var h = mt.getHours().toString().padStart(2, "0")
+                /*获取分*/
+                var mi = mt.getMinutes().toString().padStart(2, "0")
+                /*获取秒*/
+                var s = mt.getSeconds().toString().padStart(2, "0")
+                /*拼接需要的格式*/
+                return y + "-" + m + "-" + d + h + ":" + mi + ":" + s
+            }
+            // ,
+            // directives:{
+            //     "fontWeight":{
+            //         bind:function (el,binding) {
+            //             el.style.fontWeight=binding.value
+            //         }
+            //     }
+            // }
         }
     }
 </script>
