@@ -12,7 +12,6 @@
 </template>
 
 <script>
-    debugger
     import Vue from 'vue'
     /*创建过滤器方法*/
     Vue.filter("msgFilter", function (msg, msg1) {
