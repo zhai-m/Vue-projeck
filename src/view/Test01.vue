@@ -21,12 +21,28 @@
 
     <input type="button" value="加油" @click="lang">
     <input type="button" value="低调" @click="stop">
-
     <h1>{{ msg }}</h1>
+    <user></user>
+  <hr>
+    <router-link to="/blog/page1">新用户</router-link>
+    <router-link to="/blog/page2">老用户</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+  var user = {
+      template:"<h3>跳转成功：{{ $route.query.id }} -- {{ $route.query.name }}</h3>"
+  }
+
+  var page1 = {
+      template: "<h2>新用户登录</h2>"
+  }
+
+  var page2 = {
+      template: "<h2>老用户登录</h2>"
+  }
+
     export default {
         name: "Test01",
         data(){
@@ -61,6 +77,9 @@
 
                 //　疑问：　清除了定时器之后，　定时器的值是？？？
             }
+        },
+        components:{
+            user
         }
     }
     // export default {

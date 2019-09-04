@@ -16,6 +16,10 @@ import Test11 from '@/view/Test11'
 import Test12 from '@/view/Test12'
 import Test13 from '@/view/Test13'
 import Test14 from '@/view/Test14'
+import Test15 from '@/view/Test15'
+import Test16 from '@/view/Test16'
+import page1 from '@/pages/Page1'
+import page2 from '@/pages/Page2'
 
 Vue.use(Router)
 
@@ -32,7 +36,11 @@ export default new Router({
     },
     {
       path: '/blog',
-      component: Test01
+      component: Test01,
+      children:[
+        {path:'page1',component:page1},
+        {path:'page2',component:page2}
+      ]
     },
     {
       path: '/blog2',
@@ -85,6 +93,14 @@ export default new Router({
     {
       path: '/blog14',
       component: Test14
+    },
+    {
+      path: '/blog15',
+      component: Test15
+    },
+    {
+      path: '/blog16',
+      component: Test16
     }
   ]
 })

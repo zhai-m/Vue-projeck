@@ -1,8 +1,6 @@
 <div id="app">
 
-
   <cmt-box @func="loadComments"></cmt-box>
-
 
   <ul class="list-group">
     <li class="list-group-item" v-for="item in list" :key="item.id">
@@ -11,29 +9,29 @@
     </li>
   </ul>
 </div>
+
 <template id="tmpl">
   <div>
+      <div class="form-group">
+        <label>评论人：</label>
+        <input type="text" class="form-control" v-model="user">
+      </div>
 
-    <div class="form-group">
-      <label>评论人：</label>
-      <input type="text" class="form-control" v-model="user">
-    </div>
+      <div class="form-group">
+        <label>评论内容：</label>
+        <textarea class="form-control" v-model="content"></textarea>
+      </div>
 
-    <div class="form-group">
-      <label>评论内容：</label>
-      <textarea class="form-control" v-model="content"></textarea>
-    </div>
-
-    <div class="form-group">
-      <input type="button" value="发表评论" class="btn btn-primary" @click="postComment">
-    </div>
-
+      <div class="form-group">
+        <input type="button" value="发表评论" class="btn btn-primary" @click="postComment">
+      </div>
   </div>
 </template>
 
 <script>
     import Vue from 'vue'
-    var commentBox = {
+
+    var commentBox = new Vue({
         data() {
             return {
                 user: '',
@@ -57,7 +55,7 @@
                 this.$emit('func')
             }
         }
-    }
+    })
 
     export default {
         name: "Test14",
