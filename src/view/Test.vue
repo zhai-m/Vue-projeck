@@ -18,7 +18,8 @@
         <li><router-link to='blog13'>Vue教程(组件-父子组件传值)</router-link></li>
         <li><router-link to='blog14'>Vue教程(组件案例-评论列表)</router-link></li>
         <li><router-link to='blog15'>Vue教程(ref和$refs的使用)</router-link></li>
-        <li><router-link to='blog16'>Vue教程(路由router-基本使用)</router-link></li>
+        <li><router-link to='blog16'>Vue教程(methods,watch及computed的区别)</router-link></li>
+<!--        <li><router-link to='blog17'>Vue教程(methods,watch及computed的区别)</router-link></li>-->
       </ul>
     </div>
 </template>

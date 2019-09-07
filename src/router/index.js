@@ -20,6 +20,8 @@ import Test15 from '@/view/Test15'
 import Test16 from '@/view/Test16'
 import page1 from '@/pages/Page1'
 import page2 from '@/pages/Page2'
+import Test17 from '@/view/Test17'
+
 
 Vue.use(Router)
 
@@ -101,6 +103,10 @@ export default new Router({
     {
       path: '/blog16',
       component: Test16
+    },
+    {
+      path: '/blog17',
+      component: Test17
     }
   ]
 })
